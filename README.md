@@ -14,7 +14,7 @@ Certifique-se de ter o ambiente de desenvolvimento do Flutter configurado em sua
 
 Clone este repositório em seu ambiente local:
 git clone https://github.com/seu-usuario/pokemon-dias.git
-cd pokemon-dias
+
 
 ### Executando o Projeto
 
