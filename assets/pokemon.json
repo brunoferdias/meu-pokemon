@@ -1,0 +1,44 @@
+{
+  "pokemons": [
+    {
+      "name": "Bulbasaur",
+      "image": "assets/1.png",
+      "category": "Semente",
+      "weight": "7 Kilos",
+      "height": "3 Metros",
+      "abilities": "Crescer demais"
+    },
+    {
+      "name": "Charmander",
+      "image": "assets/2.png",
+      "category": "Lagarto",
+      "weight": "8 Kilos",
+      "height": "5cm",
+      "abilities": "Chama"
+    },
+    {
+      "name": "Squirtle",
+      "image": "assets/3.png",
+      "category": "Tartaruga minúscula",
+      "weight": "9 Kilos",
+      "height": "2cm",
+      "abilities": "Torrente"
+    },
+    {
+      "name": "Butterfree",
+      "image": "assets/4.png",
+      "category": "Borboleta",
+      "weight": "31 Kilos",
+      "height": "20cm",
+      "abilities": "Olhos compostos"
+    },
+    {
+      "name": "Pikachu",
+      "image": "assets/5.png",
+      "category": "Rato",
+      "weight": "5 Kilos",
+      "height": "30cm",
+      "abilities": "Dá choque"
+    }
+  ]
+}
