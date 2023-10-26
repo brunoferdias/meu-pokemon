@@ -27,9 +27,12 @@ flutter run
 
 Isso iniciará o aplicativo em um emulador ou dispositivo conectado.
 
+
+Isso iniciará o aplicativo em um emulador ou dispositivo conectado.
+
 ## Recursos e Funcionalidades
 
-- **Favoritar Pokémon**: Você pode marcar seus Pokémon favoritos para acessá-los facilmente posteriormente.
+- **Favoritar Pokémon**: Você pode marcar seus Pokémon favoritos para acessá-los facilmente posteriormente. Os favoritos são armazenados no `SharedPreferences` para que você possa mantê-los entre as sessões do aplicativo.
 
 - **Pesquisa**: O aplicativo permite pesquisar Pokémon com base em seus nomes. Basta digitar o nome no campo de pesquisa e os resultados serão filtrados.
 
@@ -44,5 +47,3 @@ Contribuições são bem-vindas! Sinta-se à vontade para abrir problemas e soli
 ## Licença
 
 Este projeto é licenciado sob a Licença MIT - consulte o arquivo [LICENSE](LICENSE) para obter detalhes.
-
-
