@@ -74,14 +74,34 @@ class _HomePageState extends State<HomePage> {
             child: IconButton(
                 iconSize: 30,
                 onPressed: () {
+
+
                   showDialog(
                     context: context,
                     builder: (context) {
-                      final List favoritePokemonList = pokemonList.where((pokemon) => pokemon.isMyFav).toList();
+                      final favoritePokemonList = pokemonList.where((pokemon) => pokemon.isMyFav).toList();
+                      final isSingleFavorite = favoritePokemonList.length == 1;
+
                       return AlertDialog(
                         title: Text('Favoritos'),
-                        content: favoritePokemonList.isEmpty
-                            ? Text('Não há Pokémon favorito.')
+                        content: isSingleFavorite
+                            ? Container(
+                          constraints: BoxConstraints(maxHeight: 400), // Defina a altura mínima desejada
+                          child: Card(
+                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                            elevation: 5,
+                            color: Colors.grey.shade100,
+                            child: Column(
+                              children: [
+                                Image.asset(favoritePokemonList[0].image),
+                                Text('Nome: ${favoritePokemonList[0].name}'),
+                                Text('Categoria: ${favoritePokemonList[0].category}'),
+                                Text('Peso: ${favoritePokemonList[0].weight}'),
+                                Text('Altura: ${favoritePokemonList[0].height}'),
+                              ],
+                            ),
+                          ),
+                        )
                             : Padding(
                           padding: const EdgeInsets.all(10.0),
                           child: Container(
@@ -92,8 +112,7 @@ class _HomePageState extends State<HomePage> {
                               itemBuilder: (context, index) {
                                 final Pokemon favoritePokemon = favoritePokemonList[index];
                                 return Card(
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(20)),
+                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
                                   elevation: 5,
                                   color: Colors.grey.shade100,
                                   child: Column(
@@ -113,6 +132,7 @@ class _HomePageState extends State<HomePage> {
                       );
                     },
                   );
+
 
                 },
                 icon: Icon(
