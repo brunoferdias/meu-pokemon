@@ -74,66 +74,78 @@ class _HomePageState extends State<HomePage> {
             child: IconButton(
                 iconSize: 30,
                 onPressed: () {
+                  final favoritePokemonList = pokemonList.where((pokemon) => pokemon.isMyFav).toList();
+                  if(favoritePokemonList.isEmpty){
+                    showDialog(
+                      context: context,
+                      builder: (context) {
 
 
-                  showDialog(
-                    context: context,
-                    builder: (context) {
-                      final favoritePokemonList = pokemonList.where((pokemon) => pokemon.isMyFav).toList();
-                      final isSingleFavorite = favoritePokemonList.length == 1;
+                        return AlertDialog(
+                          title: Text('Favoritos'),
+                          content: Text("Você não favoritou nenhum 😢")
 
-                      return AlertDialog(
-                        title: Text('Favoritos'),
-                        content: isSingleFavorite
-                            ? Container(
-                          constraints: BoxConstraints(maxHeight: 400), // Defina a altura mínima desejada
-                          child: Card(
-                            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                            elevation: 5,
-                            color: Colors.grey.shade100,
-                            child: Column(
-                              children: [
-                                Image.asset(favoritePokemonList[0].image),
-                                Text('Nome: ${favoritePokemonList[0].name}'),
-                                Text('Categoria: ${favoritePokemonList[0].category}'),
-                                Text('Peso: ${favoritePokemonList[0].weight}'),
-                                Text('Altura: ${favoritePokemonList[0].height}'),
-                              ],
+                        );
+                      },
+                    );
+                  }else{
+                    showDialog(
+                      context: context,
+                      builder: (context) {
+                        final favoritePokemonList = pokemonList.where((pokemon) => pokemon.isMyFav).toList();
+                        final isSingleFavorite = favoritePokemonList.length == 1;
+
+                        return AlertDialog(
+                          title: Text('Favoritos'),
+                          content: isSingleFavorite
+                              ? Container(
+                            constraints: BoxConstraints(maxHeight: 400), // Defina a altura mínima desejada
+                            child: Card(
+                              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                              elevation: 5,
+                              color: Colors.grey.shade100,
+                              child: Column(
+                                children: [
+                                  Image.asset(favoritePokemonList[0].image),
+                                  Text('Nome: ${favoritePokemonList[0].name}'),
+                                  Text('Categoria: ${favoritePokemonList[0].category}'),
+                                  Text('Peso: ${favoritePokemonList[0].weight}'),
+                                  Text('Altura: ${favoritePokemonList[0].height}'),
+                                ],
+                              ),
+                            ),
+                          )
+                              : Padding(
+                            padding: const EdgeInsets.all(10.0),
+                            child: Container(
+                              width: double.maxFinite,
+                              child: ListView.builder(
+                                physics: BouncingScrollPhysics(),
+                                itemCount: favoritePokemonList.length,
+                                itemBuilder: (context, index) {
+                                  final Pokemon favoritePokemon = favoritePokemonList[index];
+                                  return Card(
+                                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+                                    elevation: 5,
+                                    color: Colors.grey.shade100,
+                                    child: Column(
+                                      children: [
+                                        Image.asset(favoritePokemon.image),
+                                        Text('Nome: ${favoritePokemon.name}'),
+                                        Text('Categoria: ${favoritePokemon.category}'),
+                                        Text('Peso: ${favoritePokemon.weight}'),
+                                        Text('Altura: ${favoritePokemon.height}'),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ),
-                        )
-                            : Padding(
-                          padding: const EdgeInsets.all(10.0),
-                          child: Container(
-                            width: double.maxFinite,
-                            child: ListView.builder(
-                              physics: BouncingScrollPhysics(),
-                              itemCount: favoritePokemonList.length,
-                              itemBuilder: (context, index) {
-                                final Pokemon favoritePokemon = favoritePokemonList[index];
-                                return Card(
-                                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-                                  elevation: 5,
-                                  color: Colors.grey.shade100,
-                                  child: Column(
-                                    children: [
-                                      Image.asset(favoritePokemon.image),
-                                      Text('Nome: ${favoritePokemon.name}'),
-                                      Text('Categoria: ${favoritePokemon.category}'),
-                                      Text('Peso: ${favoritePokemon.weight}'),
-                                      Text('Altura: ${favoritePokemon.height}'),
-                                    ],
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                        ),
-                      );
-                    },
-                  );
-
-
+                        );
+                      },
+                    );
+                  }
                 },
                 icon: Icon(
                   Icons.favorite,
